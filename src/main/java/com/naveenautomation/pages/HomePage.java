@@ -11,7 +11,7 @@ import com.naveenautomation.utility.Utility;
 public class HomePage extends TestBase {
 
 	public HomePage() {
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 	}
 
 	@FindBy(css = "#logo img")
@@ -51,10 +51,6 @@ public class HomePage extends TestBase {
 		Utility.clickOnElement(addTocartIcon);
 	}
 
-	public ProductId43Page clickmacBookBtn() {
-		Utility.clickOnElement(macBookBtn);
-		return new ProductId43Page();
-	}
 
 	private void clickCartBtn() {
 		Utility.clickOnElement(cartBtn);
@@ -64,11 +60,6 @@ public class HomePage extends TestBase {
 		Utility.clickOnElement(viewCartBtn);
 	}
 
-	public CartPage navigateToViewCart() {
-		clickCartBtn();
-		clickViewCartBtn();
-		return new CartPage();
-	}
 
 	public boolean verifyNaveenLogo() {
 		logger.info("verifying logo is displayed");
@@ -88,53 +79,33 @@ public class HomePage extends TestBase {
 		for (WebElement element : informationWebElementList) {
 			if (element.getText().equalsIgnoreCase(item)) {
 				element.click();
-				return PageFactory.initElements(driver, pageClass);
+				return PageFactory.initElements(getDriver(), pageClass);
 			}
 		}
 		throw new RuntimeException("Information Item not found: " + item);
 	}
 
-	public AboutUsPage clickAboutUsItem(String itemToClick) {
-		return clickInformationListItem(itemToClick, AboutUsPage.class);
-	}
-
-	public DeliveryInformationPage clickDeliveryInformation(String itemToClick) {
-		return clickInformationListItem(itemToClick, DeliveryInformationPage.class);
-	}
-
-	public PrivacyPolicyPage clickPrivacyPolicyItem(String itemToClick) {
-		return clickInformationListItem(itemToClick, PrivacyPolicyPage.class);
-	}
-
-	public TermsAndConditionsPage clickTermsAndConditionsItem(String itemToClick) {
-		return clickInformationListItem(itemToClick, TermsAndConditionsPage.class);
-	}
+	
 
 	// Customer Service List
 	private <T> T clickCustomerServiceListItem(String item, Class<T> pageClass) {
 		for (WebElement element : customerServiceWebElementList) {
 			if (element.getText().equalsIgnoreCase(item)) {
 				element.click();
-				return PageFactory.initElements(driver, pageClass);
+				return PageFactory.initElements(getDriver(), pageClass);
 			}
 		}
 		throw new RuntimeException("Customer Service Item not found: " + item);
 	}
 
-	public ContactUsPage clickContactUsItem(String itemToClick) {
-		return clickCustomerServiceListItem(itemToClick, ContactUsPage.class);
-	}
-
-	public SiteMapPage clickSiteMapItem(String itemToClick) {
-		return clickCustomerServiceListItem(itemToClick, SiteMapPage.class);
-	}
+	
 
 	// Extras List
 	private <T> T clickExtrasListItem(String item, Class<T> pageClass) {
 		for (WebElement element : extrasWebElementList) {
 			if (element.getText().equalsIgnoreCase(item)) {
 				element.click();
-				return PageFactory.initElements(driver, pageClass);
+				return PageFactory.initElements(getDriver(), pageClass);
 			}
 		}
 		throw new RuntimeException("Extras Item not found: " + item);
@@ -144,19 +115,7 @@ public class HomePage extends TestBase {
 		return clickExtrasListItem(itemToClick, BrandsPage.class);
 	}
 
-	public GiftCertificatesPage clickGiftCertificatesItem(String itemToClick) {
-		return clickExtrasListItem(itemToClick, GiftCertificatesPage.class);
-	}
-
-	public SpecialsPage clickSpecialsItem(String itemToClick) {
-		return clickExtrasListItem(itemToClick, SpecialsPage.class);
-	}
-
-	public ProductSearchPage submitSearchData(String searchData) {
-		enterSearchData(searchData);
-		clickSearch();
-		return new ProductSearchPage();
-	}
+	
 
 	public String getSuccessAlert() {
 

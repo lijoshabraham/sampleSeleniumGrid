@@ -10,7 +10,7 @@ import com.naveenautomation.utility.Utility;
 public class BrandsPage extends TestBase {
 
 	public BrandsPage() {
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 	}
 
 	@FindBy(css = "#content h1")

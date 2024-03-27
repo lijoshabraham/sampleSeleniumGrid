@@ -1,5 +1,7 @@
 package naveenautomation.tests;
 
+import java.net.MalformedURLException;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,12 +16,49 @@ public class BrandsPageTest extends TestBase {
 	BrandsPage brands;
 
 	@BeforeMethod
-	public void launchBrowser() {
+	public void launchBrowser() throws MalformedURLException {
 		initialization();
 	}
 
 	@Test
 	public void validateBrandsPageNavigation() {
+		
+		home = new HomePage();
+
+		brands = home.clickBrandsItem("Brands");
+
+		String headerText = brands.validateBrandPageHeader();
+		Assert.assertEquals(headerText, "Find Your Favorite Brand", "Actual and Expected header text don't match");
+
+	}
+	
+	@Test
+	public void validateBrandsPageNavigation1() {
+		
+		home = new HomePage();
+
+		brands = home.clickBrandsItem("Brands");
+
+		String headerText = brands.validateBrandPageHeader();
+		Assert.assertEquals(headerText, "Find Your Favorite Brand", "Actual and Expected header text don't match");
+
+	}
+	
+	@Test
+	public void validateBrandsPageNavigation2() {
+		
+		home = new HomePage();
+
+		brands = home.clickBrandsItem("Brands");
+
+		String headerText = brands.validateBrandPageHeader();
+		Assert.assertEquals(headerText, "Find Your Favorite Brand", "Actual and Expected header text don't match");
+
+	}
+	
+	@Test
+	public void validateBrandsPageNavigation3() {
+		
 		home = new HomePage();
 
 		brands = home.clickBrandsItem("Brands");

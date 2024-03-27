@@ -28,7 +28,7 @@ public class Utility extends TestBase {
 		String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 
 		// Save the screen shot in a file
-		File screenShotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File screenShotFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
 
 		// Save the screenshot
 		try {
@@ -78,20 +78,20 @@ public class Utility extends TestBase {
 
 	// Explicit waits
 	public static WebElement waitForElementToBeClickable(WebElement element, int timeOutInSeconds) {
-		return new WebDriverWait(driver, timeOutInSeconds).until(ExpectedConditions.elementToBeClickable(element));
+		return new WebDriverWait(getDriver(), timeOutInSeconds).until(ExpectedConditions.elementToBeClickable(element));
 	}
 
 	public static WebElement waitForElementToBeVisible(WebElement element, int timeOutInSeconds) {
-		return new WebDriverWait(driver, timeOutInSeconds).until(ExpectedConditions.visibilityOf(element));
+		return new WebDriverWait(getDriver(), timeOutInSeconds).until(ExpectedConditions.visibilityOf(element));
 	}
 
 	public static Boolean waitForElementToBeSelectable(WebElement element, int timeOutInSeconds) {
-		return new WebDriverWait(driver, timeOutInSeconds)
+		return new WebDriverWait(getDriver(), timeOutInSeconds)
 				.until(ExpectedConditions.elementSelectionStateToBe(element, false));
 	}
 
 	public static Alert waitForAlertToBePresent(int timeOutInSeconds) {
-		return new WebDriverWait(driver, timeOutInSeconds).until(ExpectedConditions.alertIsPresent());
+		return new WebDriverWait(getDriver(), timeOutInSeconds).until(ExpectedConditions.alertIsPresent());
 	}
 
 	// methods to perform actions
@@ -112,19 +112,19 @@ public class Utility extends TestBase {
 	}
 	
 	public static void moveToElement(WebElement element) {
-		Actions actions = new Actions(driver);
+		Actions actions = new Actions(getDriver());
 		actions.moveToElement(element).build().perform();
 	}
 
 	public void acceptAlert() {
 		if (waitForAlertToBePresent(5) != null) {
-			driver.switchTo().alert().accept();
+			getDriver().switchTo().alert().accept();
 		}
 	}
 
 	public void dismissAlert() {
 		if (waitForAlertToBePresent(5) != null) {
-			driver.switchTo().alert().dismiss();
+			getDriver().switchTo().alert().dismiss();
 		}
 	}
 
@@ -134,18 +134,18 @@ public class Utility extends TestBase {
 	}
 
 	public void switchToWindowHandle(WebElement element) {
-		String parentHandle = driver.getWindowHandle();
+		String parentHandle = getDriver().getWindowHandle();
 		element.click();
-		Set<String> getAllHandles = driver.getWindowHandles();
+		Set<String> getAllHandles = getDriver().getWindowHandles();
 		for (String individualHandle : getAllHandles) {
 			if (!individualHandle.equalsIgnoreCase(parentHandle)) {
-				driver.switchTo().window(individualHandle);
+				getDriver().switchTo().window(individualHandle);
 			}
 		}
 	}
 
 	public void switchToFrame(WebElement element) {
-		driver.switchTo().frame(waitForElementToBeVisible(element, 10));
+		getDriver().switchTo().frame(waitForElementToBeVisible(element, 10));
 	}
 
 	public static String getTextFromWebelement(WebElement element) {
